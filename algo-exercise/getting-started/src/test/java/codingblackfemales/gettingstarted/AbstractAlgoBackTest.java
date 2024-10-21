@@ -55,7 +55,7 @@ public abstract class AbstractAlgoBackTest extends SequencerTestCase {
 
     public abstract AlgoLogic createAlgoLogic();
 
-    protected UnsafeBuffer createTick(){
+    protected UnsafeBuffer Tick1(){
         final MessageHeaderEncoder headerEncoder = new MessageHeaderEncoder();
         final BookUpdateEncoder encoder = new BookUpdateEncoder();
 
@@ -87,7 +87,7 @@ public abstract class AbstractAlgoBackTest extends SequencerTestCase {
         return directBuffer;
     }
 
-    protected UnsafeBuffer createTick2(){
+    protected UnsafeBuffer Tick2(){
 
         final MessageHeaderEncoder headerEncoder = new MessageHeaderEncoder();
         final BookUpdateEncoder encoder = new BookUpdateEncoder();
