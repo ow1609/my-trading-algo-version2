@@ -392,12 +392,12 @@ public class MyAlgoLogic implements AlgoLogic {
         return volumeWeightedAveragePrice;
     }
 
-    private void setChildAskQuantityIfStopLossHit() {
-        childAskQuantityIfStopLossHit = (long) Math.max(getBestBidQuantityInCurrentTick(), getNumOfSharesOwned());
-    }
+    // private void setChildAskQuantityIfStopLossHit() {
+    //     childAskQuantityIfStopLossHit = (long) Math.max(getBestBidQuantityInCurrentTick(), getNumOfSharesOwned());
+    // }
 
     private long getChildAskQuantityIfStopLossHit() {
-        return childAskQuantityIfStopLossHit;
+        return (long) Math.min(getBestBidQuantityInCurrentTick(), getNumOfSharesOwned());
     }
 
 
@@ -587,6 +587,9 @@ public class MyAlgoLogic implements AlgoLogic {
         // BUG HERE
         // if have shares and VWAP hits the stopLoss, sell all shares for best price possible
         // } else if ((getNumOfSharesOwned() > 0) && (getVolumeWeightedAveragePrice() <= stopLoss)) {
+        //     logger.info("'(getNumOfSharesOwned() > 0) && (getVolumeWeightedAveragePrice() <= stopLoss)' condition met");
+        //     logger.info("getBestBidPriceInCurrentTick()" + getBestBidPriceInCurrentTick());
+        //     logger.info("getChildAskQuantityIfStopLossHit()" + getChildAskQuantityIfStopLossHit());
         //     logger.info("[MYALGO] condition '(getNumOfSharesOwned() > 0) && (getVolumeWeightedAveragePrice() <= stopLoss)' met : sniper selling everything");
         //     return new CreateChildOrder(Side.SELL, getChildAskQuantityIfStopLossHit() , getBestBidPriceInCurrentTick());
         
