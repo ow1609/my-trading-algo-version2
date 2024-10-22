@@ -60,7 +60,7 @@ public class MyAlgoLogic implements AlgoLogic {
 
 
     // getters to obtain data from current tick
-    public AbstractLevel getBestBidOrderInCurrentTick() { // TODO TEST METHOD
+    public AbstractLevel getBestBidOrderInCurrentTick() {
         return bestBidOrderInCurrentTick;
     }
 
@@ -72,7 +72,7 @@ public class MyAlgoLogic implements AlgoLogic {
         return bestBidQuantityInCurrentTick;
     }
 
-    public AbstractLevel getBestAskOrderInCurrentTick() { // TODO TEST METHOD
+    public AbstractLevel getBestAskOrderInCurrentTick() { 
         return bestAskOrderInCurrentTick;
     }
     
@@ -410,7 +410,6 @@ public class MyAlgoLogic implements AlgoLogic {
         logger.info("\n\n[MYALGO] THIS IS MARKET DATA TICK NUMBER: " + marketDataTickCount + "\n\n");
         marketDataTickCount += 1;
 
-
         logger.info("[MYALGO] The state of the order book is:\n" + orderBookAsString);
         
         // UPDATE DATA ABOUT CURRENT MARKET DATA TICK
@@ -564,6 +563,7 @@ public class MyAlgoLogic implements AlgoLogic {
         logger.info("[MYALGO] filledAndPartFilledChildAskOrdersListToString is: " + filledAndPartFilledChildAskOrdersListToString);
 
 
+        logger.info("\n\n[MYALGO] getQuantitiesOfTopBidOrdersInCurrentTick()is : " + getQuantitiesOfTopBidOrdersInCurrentTick() + "\n\n");
 
 
         // DECISION LOGIC - CREATE OR CANCEL CHILD ORDERS
