@@ -54,24 +54,53 @@ public class MyAlgoBackTest extends AbstractAlgoBackTest {
         assertEquals("testing the method: getTopAskOrdersInCurrentTick()", "[ASK[101@100], ASK[200@110], ASK[5000@115], ASK[5600@119]]", myAlgoLogic.getTopAskOrdersInCurrentTick().toString());
         assertEquals("testing the method: getPricesOfTopAskOrdersInCurrentTick()", "[100, 110, 115, 119]", myAlgoLogic.getPricesOfTopAskOrdersInCurrentTick().toString());
         assertEquals("testing the method: getQuantitiesOfTopAskOrdersInCurrentTick()", "[101, 200, 5000, 5600]", myAlgoLogic.getQuantitiesOfTopAskOrdersInCurrentTick().toString());
+        assertEquals("testing the method: getTotalQuantityOfBidOrdersInCurrentTick()", 660, myAlgoLogic.getTotalQuantityOfBidOrdersInCurrentTick());
+        assertEquals("testing the method: getTotalQuantityOfAskOrdersInCurrentTick()", 10901, myAlgoLogic.getTotalQuantityOfAskOrdersInCurrentTick());
+        
+        // // unsure here
+        // assertEquals("testing the getAllChildOrdersList() method should contain one element", 1, myAlgoLogic.getAllChildOrdersList().size());
 
-    
+        // placed a child bid order at 10% of market volume
+        assertEquals("testing the method: getChildBidOrderQuantity()", 66, myAlgoLogic.getChildBidOrderQuantity(), delta);
+
+        send(Tick2());
+        myAlgoLogic.evaluate(state);
+        // after got a filled buy order
+        assertEquals("testing the method: getAverageEntryPrice()", 98, myAlgoLogic.getAverageEntryPrice(), delta);
+        assertEquals("testing the method: getStopLoss()", 98, myAlgoLogic.getStopLoss(), delta);
+        assertEquals("testing the method: getProfitTargetAskPrice()", 101, myAlgoLogic.getProfitTargetAskPrice(), delta);
+
+        
+        
+
+        
+        send(Tick3());
+        myAlgoLogic.evaluate(state);
+
+        send(Tick4());
+        myAlgoLogic.evaluate(state);
     
     }
+
+    //INTEGRATION TESTING 
 
     @Test
     public void testBullishMarketConditions() throws Exception {
         //create a sample market data tick....
         send(Tick1());
 
-        //ADD asserts when you have implemented your algo logic
-        //assertEquals(container.getState().getChildOrders().size(), 3);
+        //then: get the state
+        var state = container.getState();
+
+        // assertEquals("testing the getAllChildOrdersList() method should contain one element", 1, state.getChildOrders().size());
+
+
 
         //when: market data moves towards us
         send(Tick2());
 
         //then: get the state
-        var state = container.getState();
+        // var state = container.getState();
 
         //Check things like filled quantity, cancelled order count etc....
         //long filledQuantity = state.getChildOrders().stream().map(ChildOrder::getFilledQuantity).reduce(Long::sum).get();

@@ -563,7 +563,7 @@ public class MyAlgoLogic implements AlgoLogic {
         logger.info("[MYALGO] filledAndPartFilledChildAskOrdersListToString is: " + filledAndPartFilledChildAskOrdersListToString);
 
 
-        logger.info("\n\n[MYALGO] getQuantitiesOfTopBidOrdersInCurrentTick()is : " + getQuantitiesOfTopBidOrdersInCurrentTick() + "\n\n");
+        logger.info("\n\n[MYALGO] getAverageEntryPrice()is : " + getAverageEntryPrice() + "\n\n");
 
 
         // DECISION LOGIC - CREATE OR CANCEL CHILD ORDERS
