@@ -23,7 +23,7 @@ public class MyAlgoBackTest extends AbstractAlgoBackTest {
     }
 
     @Test
-    public void testExampleBackTest() throws Exception {
+    public void testBullishMarketConditions() throws Exception {
         //create a sample market data tick....
         send(Tick1());
 
@@ -40,6 +40,12 @@ public class MyAlgoBackTest extends AbstractAlgoBackTest {
         //long filledQuantity = state.getChildOrders().stream().map(ChildOrder::getFilledQuantity).reduce(Long::sum).get();
         //and: check that our algo state was updated to reflect our fills when the market data
         //assertEquals(225, filledQuantity);
+
+        send(Tick3());
+        send(Tick4());
+        send(Tick5());
+        send(Tick6());
+        send(Tick7());
     }
 
 }
