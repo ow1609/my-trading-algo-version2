@@ -569,29 +569,19 @@ public class MyAlgoLogic implements AlgoLogic {
         // DECISION LOGIC - CREATE OR CANCEL CHILD ORDERS
 
         // Exit condition
-        if (allChildOrdersList.size() > 6) { // this number multiplied by the number of ticks is how many times evaluate will be called
-            logger.info("\n\n[MYALGO] currently have "
-                + allChildOrdersList.size() + " child orders and "
-                + activeChildBidOrdersList.size() + " active child bid orders");
+        if (allChildOrdersList.size() > 6) {
             logger.info("[MYALGO] Condition 'allChildOrdersList.size() > 5' met : returning No Action\n");
             return NoAction.NoAction;
         }
         
         // if I have more than 3 active BID orders, cancel the least competitve one
         if (activeChildBidOrdersList.size() > 3) {
-            logger.info("\n\n[MYALGO] currently have "
-                + allChildOrdersList.size() + " child orders and "
-                + activeChildBidOrdersList.size() + " active child bid orders");
-            logger.info("[MYALGO] Condition 'activeChildBidOrdersList.size() >= 3 "
-            + "\n and activeChildBidOrderWithLowestPrice.getPrice() < (bestBidPriceInCurrentTick - 5' met :"
-            + "\n cancelling activeChildBidOrderWithLowestPrice\n");
+            logger.info("[MYALGO] cancelling activeChildBidOrderWithLowestPrice because it is least competitive \n");
             return new CancelChildOrder(activeChildBidOrderWithLowestPrice);
 
         // if I have more than 3 active ASK orders, cancel the least competitve one
         } else if (activeChildAskOrdersList.size() > 3) {
-            logger.info("[MYALGO] Condition 'activeChildAskOrdersList.size() >= 3 "
-            + "\n and getActiveChildAskOrderWithHighestPrice().getPrice() > bestAskPriceInCurrentTick + 5' met :"
-            + "\n cancelling activeChildAskOrderWithHighestPrice\n");            
+            logger.info("[MYALGO] cancelling activeChildAskOrderWithHighestPrice because it is least competitive\n");            
             return new CancelChildOrder(activeChildAskOrderWithHighestPrice);
 
         // BUG HERE
